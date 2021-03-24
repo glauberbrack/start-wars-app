@@ -11,7 +11,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <StatusBar barStyle='light-content' backgroundColor={theme.colors.purple.n500} />
+        <StatusBar barStyle='light-content' backgroundColor={theme.colors.gray.n900} />
         <UnauthenticatedApp />
       </NavigationContainer>
     </ThemeProvider>
