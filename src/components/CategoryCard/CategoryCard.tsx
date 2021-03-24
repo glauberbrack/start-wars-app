@@ -1,6 +1,7 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import { Column } from '../Column';
 
@@ -13,9 +14,12 @@ interface Props {
   icon: string;
   name: string;
   color: string;
+  url: string;
 }
 
-const CategoryCard: React.FC<Props> = ({ name, icon, color }) => {
+const CategoryCard: React.FC<Props> = ({ name, icon, color, url }) => {
+  const navigation = useNavigation();
+
   const getIcon = (icon: string) => {
     switch (icon) {
       case 'planets':
@@ -33,10 +37,12 @@ const CategoryCard: React.FC<Props> = ({ name, icon, color }) => {
   };
 
   return (
-    <Column style={styles.categoryContainer} backgroundColor={color}>
-      {getIcon(icon)}
-      <Text style={styles.categoryText}>{name}</Text>
-    </Column>
+    <TouchableOpacity onPress={() => navigation.navigate(url)}>
+      <Column style={styles.categoryContainer} backgroundColor={color}>
+        {getIcon(icon)}
+        <Text style={styles.categoryText}>{name}</Text>
+      </Column>
+    </TouchableOpacity>
   );
 };
 

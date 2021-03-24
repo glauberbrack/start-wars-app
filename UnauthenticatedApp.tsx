@@ -10,8 +10,8 @@ const Stack = createStackNavigator();
 
 const UnauthenticatedApp: React.FC = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name='Home' component={Home} />
     <Stack.Screen name='Planets' component={Planets} />
+    <Stack.Screen name='Home' component={Home} />
   </Stack.Navigator>
 );
 

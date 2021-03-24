@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-// import Constants from 'expo-constants';
-// import { Feather } from '@expo/vector-icons';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Text, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
-// import PlanetCardSmall from '../../components/PlanetCardSmall';
-import { Constellation, Row, Column, CategoryCard } from '~/components';
+import { Constellation, Row, CategoryCard, CharacterCard } from '~/components';
 
 import categories from '~/constants/categories';
-// import { usePlanet } from '../../hooks/planet';
+import characters from '~/constants/characters';
 
 const Home = () => {
   const navigation = useNavigation();
-  // const { planets } = usePlanet();
-  const [value, onChangeText] = useState('');
 
   return (
     <Row>
@@ -21,7 +16,6 @@ const Home = () => {
       <View style={styles.content}>
         <View style={styles.head}>
           <Text style={styles.username}>Olá, Glauber</Text>
-          {/* <Feather name='settings' size={24} color='#FFFFFF' /> */}
         </View>
 
         <Text style={styles.subText}>O que você deseja explorar?</Text>
@@ -29,19 +23,19 @@ const Home = () => {
         <View>
           <Text style={styles.sectionTitle}>Categorias</Text>
 
-          <Row mt={10} mb={30} justifyContent='space-between'>
+          <View style={styles.categoryContainer}>
             {categories.map(({ name, icon, color }) => (
               <CategoryCard key={name} name={name} icon={icon} color={color} />
             ))}
-          </Row>
+          </View>
 
-          <Text style={styles.sectionTitle}>Planetas</Text>
+          <Text style={styles.sectionTitle}>Personagens</Text>
 
-          {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {planets.map(({ name, icon }) => (
-              <PlanetCardSmall key={name} name={name} icon={icon} />
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {characters.map(({ name }) => (
+              <CharacterCard key={name} name={name} />
             ))}
-          </ScrollView> */}
+          </ScrollView>
         </View>
       </View>
     </Row>
@@ -51,14 +45,6 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
-    borderRadius: 8,
-    marginTop: 40,
-    backgroundColor: '#151515'
-  },
   content: {
     paddingHorizontal: 15,
     paddingTop: 20,
@@ -70,23 +56,33 @@ const styles = StyleSheet.create({
     zIndex: 1
   },
   head: {
+    marginTop: 40,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
   },
   username: {
     fontSize: 32,
+    fontFamily: 'Ubuntu-Regular',
     fontWeight: 'bold',
     color: '#FFFFFF'
   },
   subText: {
     fontSize: 16,
+    fontFamily: 'Ubuntu-Regular',
     color: '#FFFFFF'
   },
   sectionTitle: {
     fontSize: 16,
+    fontFamily: 'Ubuntu-Regular',
     color: '#FFFFFF',
     marginTop: 30,
     marginBottom: 20
+  },
+  categoryContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    marginBottom: 30
   }
 });
