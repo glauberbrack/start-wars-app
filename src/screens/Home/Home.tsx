@@ -4,11 +4,10 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View, Text, ScrollView, TextInput } from 'react-native';
 
-// import CategoryItem from '../../components/CategoryItem';
 // import PlanetCardSmall from '../../components/PlanetCardSmall';
-import { Constellation } from '~/components';
+import { Constellation, Row, Column, CategoryCard } from '~/components';
 
-// import categories from '../../res/categories';
+import categories from '~/constants/categories';
 // import { usePlanet } from '../../hooks/planet';
 
 const Home = () => {
@@ -17,7 +16,7 @@ const Home = () => {
   const [value, onChangeText] = useState('');
 
   return (
-    <View style={styles.wrapper}>
+    <Row>
       <Constellation />
       <View style={styles.content}>
         <View style={styles.head}>
@@ -27,28 +26,14 @@ const Home = () => {
 
         <Text style={styles.subText}>O que você deseja explorar?</Text>
 
-        {/* <View style={styles.inputContainer}>
-          <Feather name='search' size={17} color='#FFFFFF' style={{ paddingRight: 10 }} />
-          <TextInput
-            style={{ color: '#fff' }}
-            placeholder='Procure planetas, asteroides, estrelas...'
-            onChangeText={text => onChangeText(text)}
-            onSubmitEditing={() =>
-              navigation.navigate('SearchPage', {
-                screen: 'Search',
-                params: { searchPlanet: value }
-              })
-            }
-          />
-        </View> */}
         <View>
-          <Text style={styles.sectionTitle}>Personagens</Text>
+          <Text style={styles.sectionTitle}>Categorias</Text>
 
-          {/* <View style={styles.sections}>
-            {categories.map(({ name, icon, colors }) => (
-              <CategoryItem key={name} name={name} icon={icon} colors={colors} />
+          <Row mt={10} mb={30} justifyContent='space-between'>
+            {categories.map(({ name, icon, color }) => (
+              <CategoryCard key={name} name={name} icon={icon} color={color} />
             ))}
-          </View> */}
+          </Row>
 
           <Text style={styles.sectionTitle}>Planetas</Text>
 
@@ -59,16 +44,13 @@ const Home = () => {
           </ScrollView> */}
         </View>
       </View>
-    </View>
+    </Row>
   );
 };
 
 export default Home;
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1
-  },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -106,9 +88,5 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     marginTop: 30,
     marginBottom: 20
-  },
-  sections: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
   }
 });
