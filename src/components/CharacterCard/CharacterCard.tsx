@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { theme } from '~/theme';
-import { Row, Column } from '~/components';
 
 interface Props {
   name: string;
@@ -40,8 +39,9 @@ const styles = StyleSheet.create({
   },
   planetName: {
     fontFamily: 'Ubuntu-Bold',
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: 'bold',
+    marginRight: 15,
     color: `${theme.colors.white}`
   },
   button: {

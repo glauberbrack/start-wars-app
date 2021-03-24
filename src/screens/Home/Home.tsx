@@ -24,8 +24,8 @@ const Home = () => {
           <Text style={styles.sectionTitle}>Categorias</Text>
 
           <View style={styles.categoryContainer}>
-            {categories.map(({ name, icon, color }) => (
-              <CategoryCard key={name} name={name} icon={icon} color={color} />
+            {categories.map(({ name, icon, color, screen }) => (
+              <CategoryCard key={name} name={name} icon={icon} color={color} screen={screen} />
             ))}
           </View>
 

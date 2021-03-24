@@ -8,12 +8,12 @@ interface IHeaderProps {
 }
 
 const PageHeader: React.FC<IHeaderProps> = ({ title }) => {
-  const navigation = useNavigation();
+  const { goBack } = useNavigation();
 
   return (
     <View style={styles.content}>
       <View style={styles.head}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={goBack}>
           <Icon name='arrow-left' size={24} color='#FFFFFF' />
         </TouchableOpacity>
 

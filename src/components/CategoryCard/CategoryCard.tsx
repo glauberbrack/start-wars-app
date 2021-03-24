@@ -14,11 +14,11 @@ interface Props {
   icon: string;
   name: string;
   color: string;
-  url: string;
+  screen: string;
 }
 
-const CategoryCard: React.FC<Props> = ({ name, icon, color, url }) => {
-  const navigation = useNavigation();
+const CategoryCard: React.FC<Props> = ({ name, icon, color, screen }) => {
+  const { navigate } = useNavigation();
 
   const getIcon = (icon: string) => {
     switch (icon) {
@@ -37,7 +37,7 @@ const CategoryCard: React.FC<Props> = ({ name, icon, color, url }) => {
   };
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(url)}>
+    <TouchableOpacity onPress={() => navigate(screen)}>
       <Column style={styles.categoryContainer} backgroundColor={color}>
         {getIcon(icon)}
         <Text style={styles.categoryText}>{name}</Text>
