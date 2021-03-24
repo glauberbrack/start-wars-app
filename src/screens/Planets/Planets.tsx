@@ -6,7 +6,7 @@ import { Row } from '~/components';
 
 const Planets: React.FC = () => {
   return (
-    <Row mt={0}>
+    <Row>
       <Title>Planets</Title>
       <Title>Planets</Title>
     </Row>

@@ -10,8 +10,8 @@ import UnauthenticatedApp from './UnauthenticatedApp';
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
+      <StatusBar barStyle='light-content' backgroundColor={theme.colors.gray.n900} />
       <NavigationContainer>
-        <StatusBar barStyle='light-content' backgroundColor={theme.colors.gray.n900} />
         <UnauthenticatedApp />
       </NavigationContainer>
     </ThemeProvider>
