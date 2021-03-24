@@ -63,11 +63,10 @@ module.exports = {
     ]
   },
   settings: {
-    react: {
-      version: 'detect'
-    },
     'import/resolver': {
+      typescript: {},
       'babel-plugin-root-import': {
+        rootPathPrefix: '~',
         rootPathSuffix: 'src'
       }
     }
