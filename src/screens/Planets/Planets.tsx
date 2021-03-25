@@ -3,7 +3,7 @@ import { StyleSheet, SafeAreaView, View, Text, ScrollView } from 'react-native';
 
 import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '~/store/reducers/rootReducer';
+import { AppState } from '~/redux/reducers/rootReducer';
 
 import planets from '~/constants/planets-mock';
 

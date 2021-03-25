@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { theme } from '~/theme';
 import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
-import { AppState } from '~/store/reducers/rootReducer';
-import { charactersAction } from '~/store/actions/charactersAction';
+import { AppState } from '~/redux/reducers/rootReducer';
+import { charactersAction } from '~/redux/actions/charactersAction';
 
 const Characters: React.FC = () => {
   const { characters } = useSelector((state: AppState) => state.characters);
