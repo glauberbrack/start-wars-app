@@ -4,7 +4,6 @@ import { StyleSheet, SafeAreaView, View, ScrollView, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { theme } from '~/theme';
-import { CharacterResponse } from '~/constants/interfaces';
 import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
 import { AppState } from '~/store/reducers/rootReducer';
 import { charactersAction } from '~/store/actions/charactersAction';
@@ -15,15 +14,9 @@ const Characters: React.FC = () => {
 
   useEffect(() => {
     const loadResources = async () => {
-      axios
-        .request({
-          url: 'https://swapi.dev/api/people/',
-          transformResponse: (data: CharacterResponse) => data.results
-        })
-        .then(response => {
-          const { data } = response;
-          charactersDispatch({ type: 'FETCH_CHARACTERS', payload: response });
-        });
+      axios.get('https://swapi.dev/api/people/').then(response => {
+        charactersDispatch({ type: 'FETCH_CHARACTERS', payload: response });
+      });
     };
 
     loadResources();
