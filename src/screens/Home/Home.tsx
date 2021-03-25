@@ -32,8 +32,8 @@ const Home = () => {
           <Text style={styles.sectionTitle}>Personagens</Text>
 
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {characters.map(({ name }) => (
-              <CharacterCard key={name} name={name} />
+            {characters.map(({ name, image }) => (
+              <CharacterCard key={name} name={name} image={image} />
             ))}
           </ScrollView>
         </View>

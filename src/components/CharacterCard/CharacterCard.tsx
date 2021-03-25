@@ -6,15 +6,13 @@ import { theme } from '~/theme';
 
 interface Props {
   name: string;
+  image: Object;
 }
 
-const CharacterCard: React.FC<Props> = ({ name }) => {
+const CharacterCard: React.FC<Props> = ({ name, image }) => {
   return (
     <TouchableOpacity style={styles.planetCard} onPress={() => console.log('oi')}>
-      <Image
-        source={{ uri: 'https://api.openpay.mx/barcode/185017437691737?width=1&height=100' }}
-        style={styles.characterImage}
-      />
+      <Image source={image} style={styles.characterImage} />
 
       <View style={styles.button}>
         <Text style={styles.planetName}>{name}</Text>
@@ -52,6 +50,7 @@ const styles = StyleSheet.create({
     marginTop: 30
   },
   characterImage: {
+    borderRadius: 50,
     width: 100,
     height: 100
   }
