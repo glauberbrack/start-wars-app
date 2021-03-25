@@ -17,6 +17,6 @@ export interface Character {
   url: string;
 }
 
-export interface CharacterResponse {
-  results: Character;
+export interface Planet {
+  name: string;
 }
