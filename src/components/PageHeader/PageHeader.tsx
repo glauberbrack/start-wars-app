@@ -11,7 +11,7 @@ const PageHeader: React.FC<IHeaderProps> = ({ title }) => {
   const { goBack } = useNavigation();
 
   return (
-    <View style={styles.content}>
+    <View>
       <View style={styles.head}>
         <TouchableOpacity onPress={goBack}>
           <Icon name='arrow-left' size={24} color='#FFFFFF' />
@@ -30,16 +30,6 @@ const PageHeader: React.FC<IHeaderProps> = ({ title }) => {
 export default PageHeader;
 
 const styles = StyleSheet.create({
-  content: {
-    paddingHorizontal: 15,
-    paddingTop: 20,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1
-  },
   head: {
     flexDirection: 'row',
     justifyContent: 'space-between',
