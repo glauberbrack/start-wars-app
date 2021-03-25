@@ -10,10 +10,6 @@ import planets from '~/constants/planets-mock';
 import { theme } from '~/theme';
 
 const Planets: React.FC = () => {
-  const { characters } = useSelector((state: AppState) => state.characters);
-  useEffect(() => {
-    console.log('oieeee', characters);
-  }, []);
   return (
     <SafeAreaView style={styles.wrapper}>
       <Constellation />

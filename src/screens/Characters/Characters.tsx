@@ -1,6 +1,6 @@
-import React, { useEffect, Dispatch } from 'react';
+import React, { useEffect, useState, Dispatch } from 'react';
 import axios from 'axios';
-import { StyleSheet, SafeAreaView, View, ScrollView, Text } from 'react-native';
+import { ActivityIndicator, StyleSheet, SafeAreaView, View, ScrollView, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { theme } from '~/theme';
@@ -12,16 +12,25 @@ const Characters: React.FC = () => {
   const { characters } = useSelector((state: AppState) => state.characters);
   const charactersDispatch = useDispatch<Dispatch<charactersAction>>();
 
+  const [loading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const loadResources = async () => {
-      axios.get('https://swapi.dev/api/people/').then(response => {
-        charactersDispatch({ type: 'FETCH_CHARACTERS', payload: response });
+      setIsLoading(true);
+      const response = await axios.get('https://swapi.dev/api/people/');
+      charactersDispatch({
+        type: 'FETCH_CHARACTERS',
+        payload: response.data.results
       });
+      setIsLoading(false);
     };
 
     loadResources();
   }, []);
 
+  if (loading) {
+    return <ActivityIndicator size='large' color={theme.colors.blue.default} />;
+  }
   return (
     <SafeAreaView style={styles.wrapper}>
       <Constellation />
