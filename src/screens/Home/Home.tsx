@@ -1,18 +1,22 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
 import { Constellation, Row, CategoryCard, CharacterCard } from '~/components';
-
 import categories from '~/constants/categories';
 import characters from '~/constants/characters';
+import LottieView from 'lottie-react-native';
 
 const Home = () => {
-  const navigation = useNavigation();
-
   return (
     <Row>
-      <Constellation />
+      <LottieView
+        autoPlay
+        loop
+        renderMode='SOFTWARE'
+        source={require('../../assets/animations/loader.json')}
+        style={{ width: 150, height: 150 }}
+      />
+      {/* <Constellation />
       <View style={styles.content}>
         <View style={styles.head}>
           <Text style={styles.username}>Olá, Glauber</Text>
@@ -37,7 +41,7 @@ const Home = () => {
             ))}
           </ScrollView>
         </View>
-      </View>
+      </View> */}
     </Row>
   );
 };

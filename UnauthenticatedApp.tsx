@@ -1,9 +1,9 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
 
+import { createStackNavigator } from '@react-navigation/stack';
+import { Characters } from '~/screens/Characters';
 import { Home } from '~/screens/Home';
 import { Planets } from '~/screens/Planets';
-import { Characters } from '~/screens/Characters';
 
 // import { theme } from 'src/theme';
 
