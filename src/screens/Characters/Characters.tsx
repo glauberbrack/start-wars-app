@@ -1,12 +1,12 @@
 import React, { useEffect, useState, Dispatch } from 'react';
-import axios from 'axios';
-import { ActivityIndicator, StyleSheet, SafeAreaView, View, ScrollView, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, View, ScrollView, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { theme } from '~/theme';
-import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
-import { AppState } from '~/redux/reducers/rootReducer';
+import { Column, Constellation, PageHeader, SingleItemCard, Loader } from '~/components';
 import { charactersActions } from '~/redux/actions/charactersActions';
+import { AppState } from '~/redux/reducers/rootReducer';
+import { theme } from '~/theme';
+import axios from 'axios';
 
 const Characters: React.FC = () => {
   const { characters } = useSelector((state: AppState) => state.characters);
@@ -26,10 +26,10 @@ const Characters: React.FC = () => {
     };
 
     loadResources();
-  }, []);
+  }, [charactersDispatch]);
 
   if (loading) {
-    return <ActivityIndicator size='large' color={theme.colors.blue.default} />;
+    return <Loader />;
   }
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -38,7 +38,7 @@ const Characters: React.FC = () => {
         <PageHeader title='Personagens' />
         <ScrollView>
           {characters.map(({ name }) => (
-            <SingleItemCard>
+            <SingleItemCard key={name}>
               <Column>
                 <Text style={styles.title}>{name}</Text>
                 {/* <View style={styles.line}>
