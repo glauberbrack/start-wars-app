@@ -1,26 +1,47 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, ScrollView } from 'react-native';
-
-import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
+import React, { useEffect, useState, Dispatch } from 'react';
+import axios from 'axios';
+import { ActivityIndicator, StyleSheet, SafeAreaView, View, ScrollView, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '~/store/reducers/rootReducer';
-
-import planets from '~/constants/planets-mock';
 
 import { theme } from '~/theme';
+import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
+import { AppState } from '~/store/reducers/rootReducer';
+import { charactersAction } from '~/store/actions/charactersAction';
 
-const Planets: React.FC = () => {
+const Characters: React.FC = () => {
+  const { characters } = useSelector((state: AppState) => state.characters);
+  const charactersDispatch = useDispatch<Dispatch<charactersAction>>();
+
+  const [loading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const loadResources = async () => {
+      setIsLoading(true);
+      const response = await axios.get('https://swapi.dev/api/people/');
+      charactersDispatch({
+        type: 'FETCH_CHARACTERS',
+        payload: response.data.results
+      });
+      setIsLoading(false);
+    };
+
+    loadResources();
+  }, []);
+
+  if (loading) {
+    return <ActivityIndicator size='large' color={theme.colors.blue.default} />;
+  }
   return (
     <SafeAreaView style={styles.wrapper}>
       <Constellation />
       <View style={styles.content}>
-        <PageHeader title='Planetas' />
+        <PageHeader title='Personagens' />
         <ScrollView>
-          {planets.map(({ name, rotation_period, diameter, climate, terrain }) => (
+          {characters.map(({ name }) => (
             <SingleItemCard>
               <Column>
                 <Text style={styles.title}>{name}</Text>
-                <View style={styles.line}>
+                {/* <View style={styles.line}>
                   <Text style={styles.item}>Período de Rotação:</Text>
                   <Text style={styles.description}>{rotation_period}</Text>
                 </View>
@@ -35,7 +56,7 @@ const Planets: React.FC = () => {
                 <View style={styles.line}>
                   <Text style={styles.item}>Terreno:</Text>
                   <Text style={styles.description}>{terrain}</Text>
-                </View>
+                </View> */}
               </Column>
             </SingleItemCard>
           ))}
@@ -45,7 +66,7 @@ const Planets: React.FC = () => {
   );
 };
 
-export default Planets;
+export default Characters;
 
 const styles = StyleSheet.create({
   wrapper: {
