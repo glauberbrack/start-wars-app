@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, SafeAreaView, View, Text, ScrollView } from 'react-native';
 
 import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '~/store/reducers/rootReducer';
 
 import planets from '~/constants/planets-mock';
 
 import { theme } from '~/theme';
 
 const Planets: React.FC = () => {
+  const { characters } = useSelector((state: AppState) => state.characters);
+  useEffect(() => {
+    console.log('oieeee', characters);
+  }, []);
   return (
     <SafeAreaView style={styles.wrapper}>
       <Constellation />

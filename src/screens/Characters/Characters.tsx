@@ -1,40 +1,45 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, ScrollView } from 'react-native';
-import { connect } from 'react-redux';
+import React, { useEffect, Dispatch } from 'react';
+import axios from 'axios';
+import { StyleSheet, SafeAreaView, View, ScrollView, Text } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { theme } from '~/theme';
+import { CharacterResponse } from '~/constants/interfaces';
 import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
-import { getCharacters } from '~/store/modules/characters/actions';
-import { StarWarsConnection, Character } from '~/store/modules/characters/sagas';
+import { AppState } from '~/store/reducers/rootReducer';
+import { charactersAction } from '~/store/actions/charactersAction';
 
-import planets from '~/constants/planets-mock';
+const Characters: React.FC = () => {
+  const { characters } = useSelector((state: AppState) => state.characters);
+  const charactersDispatch = useDispatch<Dispatch<charactersAction>>();
 
-interface Props {
-  getCharacters: () => void;
-  characters: StarWarsConnection<Character>;
-  error: string;
-}
-
-interface Item {
-  item: Character;
-}
-
-const Characters: React.FC<Props> = () => {
   useEffect(() => {
-    const teste = getCharacters();
-    console.log(teste);
+    const loadResources = async () => {
+      axios
+        .request({
+          url: 'https://swapi.dev/api/people/',
+          transformResponse: (data: CharacterResponse) => data.results
+        })
+        .then(response => {
+          const { data } = response;
+          charactersDispatch({ type: 'FETCH_CHARACTERS', payload: response });
+        });
+    };
+
+    loadResources();
   }, []);
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <Constellation />
       <View style={styles.content}>
         <PageHeader title='Personagens' />
         <ScrollView>
-          {planets.map(({ name, rotation_period, diameter, climate, terrain }) => (
+          {characters.map(({ name }) => (
             <SingleItemCard>
               <Column>
                 <Text style={styles.title}>{name}</Text>
-                <View style={styles.line}>
+                {/* <View style={styles.line}>
                   <Text style={styles.item}>Período de Rotação:</Text>
                   <Text style={styles.description}>{rotation_period}</Text>
                 </View>
@@ -49,7 +54,7 @@ const Characters: React.FC<Props> = () => {
                 <View style={styles.line}>
                   <Text style={styles.item}>Terreno:</Text>
                   <Text style={styles.description}>{terrain}</Text>
-                </View>
+                </View> */}
               </Column>
             </SingleItemCard>
           ))}

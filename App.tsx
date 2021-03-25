@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
-import { store } from '~/store';
+import { store } from '~/store/store';
 import { theme } from '~/theme';
 
 import UnauthenticatedApp from './UnauthenticatedApp';
