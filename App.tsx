@@ -1,11 +1,19 @@
 import React from 'react';
-import { StatusBar, SafeAreaView, Text } from 'react-native';
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { ThemeProvider } from 'styled-components';
+
+import { theme } from '~/theme';
+
+import UnauthenticatedApp from './UnauthenticatedApp';
 
 export default function App() {
   return (
-    <SafeAreaView>
-      <StatusBar />
-      <Text>Glauber Init</Text>
-    </SafeAreaView>
+    <ThemeProvider theme={theme}>
+      <StatusBar barStyle='light-content' backgroundColor={theme.colors.gray.n900} />
+      <NavigationContainer>
+        <UnauthenticatedApp />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
