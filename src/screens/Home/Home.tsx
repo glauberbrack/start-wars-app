@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
 import { Constellation, Row, CategoryCard, CharacterCard, Loader } from '~/components';
 import categories from '~/constants/categories';
 import characters from '~/constants/characters';
-import LottieView from 'lottie-react-native';
 
-const Home = () => {
+const Home: React.FC = () => {
+  const [loading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <Row>
-      <Loader />
-      {/* <Constellation />
+      <Constellation />
       <View style={styles.content}>
         <View style={styles.head}>
           <Text style={styles.username}>Olá, Glauber</Text>
@@ -35,7 +44,7 @@ const Home = () => {
             ))}
           </ScrollView>
         </View>
-      </View> */}
+      </View>
     </Row>
   );
 };

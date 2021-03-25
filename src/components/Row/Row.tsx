@@ -1,7 +1,10 @@
 import React from 'react';
 
-import { Column } from '../Column';
+import { Column } from '~/components';
+import { IColumnProps } from '~/components/Column';
 
-const RowComponent: React.FC = props => <Column flexDirection='row' {...props} />;
+export type RowProps = IColumnProps;
 
-export default RowComponent;
+const Row: React.FC<RowProps> = props => <Column flexDirection='row' {...props} />;
+
+export default Row;
