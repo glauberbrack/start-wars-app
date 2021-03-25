@@ -1,7 +1,11 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, View } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Text, ScrollView } from 'react-native';
 
-import { Row, Constellation, PageHeader, SingleItemCard } from '~/components';
+import { Row, Column, Constellation, PageHeader, SingleItemCard } from '~/components';
+
+import planets from '~/constants/planets-mock';
+
+import { theme } from '~/theme';
 
 const Planets: React.FC = () => {
   return (
@@ -9,7 +13,31 @@ const Planets: React.FC = () => {
       <Constellation />
       <View style={styles.content}>
         <PageHeader title='Planetas' />
-        <SingleItemCard />
+        <ScrollView>
+          {planets.map(({ name, rotation_period, diameter, climate, terrain }) => (
+            <SingleItemCard>
+              <Column>
+                <Text style={styles.title}>{name}</Text>
+                <View style={styles.line}>
+                  <Text style={styles.item}>Período de Rotação:</Text>
+                  <Text style={styles.description}>{rotation_period}</Text>
+                </View>
+                <View style={styles.line}>
+                  <Text style={styles.item}>Diâmetro:</Text>
+                  <Text style={styles.description}>{diameter}</Text>
+                </View>
+                <View style={styles.line}>
+                  <Text style={styles.item}>Clima:</Text>
+                  <Text style={styles.description}>{climate}</Text>
+                </View>
+                <View style={styles.line}>
+                  <Text style={styles.item}>Terreno:</Text>
+                  <Text style={styles.description}>{terrain}</Text>
+                </View>
+              </Column>
+            </SingleItemCard>
+          ))}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -24,6 +52,8 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 15,
     paddingTop: 20,
+    paddingLeft: 15,
+    paddingRight: 15,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -31,17 +61,25 @@ const styles = StyleSheet.create({
     bottom: 0,
     zIndex: 1
   },
-  head: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  subText: {
-    fontFamily: 'Roboto_400Regular',
-    fontSize: 32,
+  title: {
+    fontFamily: 'Ubuntu-Bold',
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#FFFFFF',
-    marginTop: 40,
-    marginBottom: 30
+    color: `${theme.colors.white}`
+  },
+  line: {
+    flexDirection: 'row',
+    marginTop: 10
+  },
+  item: {
+    fontFamily: 'Ubuntu-Bold',
+    fontSize: 12,
+    marginRight: 10,
+    color: `${theme.colors.white}`
+  },
+  description: {
+    fontFamily: 'Ubuntu-Regular',
+    fontSize: 12,
+    color: `${theme.colors.white}`
   }
 });
