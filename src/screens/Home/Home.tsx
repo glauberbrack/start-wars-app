@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
-import { Constellation, Row, CategoryCard, CharacterCard } from '~/components';
+import { Constellation, Row, CategoryCard, CharacterCard, Loader } from '~/components';
 import categories from '~/constants/categories';
 import characters from '~/constants/characters';
 import LottieView from 'lottie-react-native';
@@ -9,13 +9,7 @@ import LottieView from 'lottie-react-native';
 const Home = () => {
   return (
     <Row>
-      <LottieView
-        autoPlay
-        loop
-        renderMode='SOFTWARE'
-        source={require('../../assets/animations/loader.json')}
-        style={{ width: 150, height: 150 }}
-      />
+      <Loader />
       {/* <Constellation />
       <View style={styles.content}>
         <View style={styles.head}>
