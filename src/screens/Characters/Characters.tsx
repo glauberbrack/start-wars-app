@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { theme } from '~/theme';
 import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
 import { AppState } from '~/redux/reducers/rootReducer';
-import { charactersAction } from '~/redux/actions/charactersAction';
+import { charactersActions } from '~/redux/actions/charactersActions';
 
 const Characters: React.FC = () => {
   const { characters } = useSelector((state: AppState) => state.characters);
-  const charactersDispatch = useDispatch<Dispatch<charactersAction>>();
+  const charactersDispatch = useDispatch<Dispatch<charactersActions>>();
 
   const [loading, setIsLoading] = useState(false);
 

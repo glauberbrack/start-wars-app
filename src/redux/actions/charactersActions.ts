@@ -5,4 +5,4 @@ export interface IFetchCharactersAction {
   payload: Array<Character>;
 }
 
-export type charactersAction = IFetchCharactersAction;
+export type charactersActions = IFetchCharactersAction;

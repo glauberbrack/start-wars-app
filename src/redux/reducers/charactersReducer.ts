@@ -1,4 +1,4 @@
-import { charactersAction } from '../actions/charactersAction';
+import { charactersActions } from '../actions/charactersActions';
 import { Character } from '~/constants/interfaces';
 
 type CharactersState = {
@@ -9,7 +9,7 @@ const initialState: CharactersState = {
   characters: []
 };
 
-const charactersReducer = (state: CharactersState = initialState, action: charactersAction) => {
+const charactersReducer = (state: CharactersState = initialState, action: charactersActions) => {
   switch (action.type) {
     case 'FETCH_CHARACTERS':
       return {
