@@ -3,7 +3,7 @@ import { theme } from '~/theme';
 const categories = [
   { name: 'Planetas', icon: 'planets', color: [`${theme.colors.yellow.n400}`], screen: 'Planets' },
   {
-    name: 'Personagens',
+    name: 'Pessoas',
     icon: 'people',
     color: [`${theme.colors.blue.secondary}`],
     screen: 'Characters'

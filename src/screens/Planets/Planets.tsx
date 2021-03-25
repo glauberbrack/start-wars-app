@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, View, Text, ScrollView } from 'react-native';
 
-import { Row, Column, Constellation, PageHeader, SingleItemCard } from '~/components';
+import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
 
 import planets from '~/constants/planets-mock';
 
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Ubuntu-Bold',
     fontSize: 18,
-    fontWeight: 'bold',
     color: `${theme.colors.white}`
   },
   line: {
