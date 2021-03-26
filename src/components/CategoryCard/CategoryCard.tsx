@@ -1,23 +1,22 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
+import Asteroids from '~/assets/icons/asteroids.svg';
+import Galaxies from '~/assets/icons/galaxies.svg';
+import Planets from '~/assets/icons/planets.svg';
+import Stars from '~/assets/icons/stars.svg';
 
 import { Column } from '../Column';
 
-import Planets from '~/assets/icons/planets.svg';
-import Asteroids from '~/assets/icons/asteroids.svg';
-import Stars from '~/assets/icons/stars.svg';
-import Galaxies from '~/assets/icons/galaxies.svg';
-
 interface Props {
-  icon: string;
   name: string;
+  icon: string;
   color: string;
   screen: string;
 }
 
-const CategoryCard: React.FC<Props> = ({ name, icon, color, screen }) => {
+const CategoryCard: React.FC<Props> = ({ name, icon, color, screen }: Props) => {
   const { navigate } = useNavigation();
 
   const getIcon = (icon: string) => {

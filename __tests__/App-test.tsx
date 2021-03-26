@@ -1,14 +1,24 @@
-/**
- * @format
- */
-
-import 'react-native';
 import React from 'react';
-import App from '../App';
-
-// Note: test renderer must be required after react-native.
+import { Text } from 'react-native';
 import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+import { Column, Row, SingleItemCard } from '../src/components';
+
+// Note: test renderer must be required after react-native.
+describe('Components rendering', () => {
+  it('should render Column component', () => {
+    renderer.create(<Column />);
+  });
+
+  it('should render Row component', () => {
+    renderer.create(<Row />);
+  });
+
+  it('should render SingleItemCard component', () => {
+    renderer.create(
+      <SingleItemCard>
+        <Text>Single card </Text>
+      </SingleItemCard>
+    );
+  });
 });

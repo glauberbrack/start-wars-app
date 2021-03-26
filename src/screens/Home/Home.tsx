@@ -1,21 +1,28 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
-import { Constellation, Row, CategoryCard, CharacterCard } from '~/components';
-
+import { Constellation, Row, CategoryCard, CharacterCard, Loader } from '~/components';
 import categories from '~/constants/categories';
 import characters from '~/constants/characters';
 
-const Home = () => {
-  const navigation = useNavigation();
+const Home: React.FC = () => {
+  const [loading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <Row>
       <Constellation />
       <View style={styles.content}>
         <View style={styles.head}>
-          <Text style={styles.username}>Olá, Glauber</Text>
+          <Text style={styles.username}>Olá!</Text>
         </View>
 
         <Text style={styles.subText}>O que você deseja explorar?</Text>
