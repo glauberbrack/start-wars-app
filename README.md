@@ -1,6 +1,6 @@
 
 <h1 align="center">
-    <img alt="star-wars" title="#star-wars" src=".github/app.png" />
+    <img alt="star-wars" title="#star-wars" src=".github/app.png" width='320px' />
 </h1>
 
 
