@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+
 import charactersReducer from './charactersReducer';
 import planetsReducer from './planetsReducer';
 

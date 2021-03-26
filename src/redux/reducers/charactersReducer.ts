@@ -1,5 +1,6 @@
-import { charactersActions } from '../actions/charactersActions';
 import { Character } from '~/constants/interfaces';
+
+import { charactersActions } from '../actions/charactersActions';
 
 type CharactersState = {
   characters: Character[];
