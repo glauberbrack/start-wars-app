@@ -12,17 +12,22 @@ const Characters: React.FC = () => {
   const { characters } = useSelector((state: AppState) => state.characters);
   const charactersDispatch = useDispatch<Dispatch<charactersActions>>();
 
-  const [loading, setIsLoading] = useState(false);
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadResources = async () => {
-      setIsLoading(true);
-      const response = await axios.get('https://swapi.dev/api/people/');
-      charactersDispatch({
-        type: 'FETCH_CHARACTERS',
-        payload: response.data.results
-      });
-      setIsLoading(false);
+      try {
+        const response = await axios.get('https://swapi.dev/api/people/');
+        charactersDispatch({
+          type: 'FETCH_CHARACTERS',
+          payload: response.data.results
+        });
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('PLANETS LOAD ERROR: ', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     loadResources();
@@ -31,32 +36,33 @@ const Characters: React.FC = () => {
   if (loading) {
     return <Loader />;
   }
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <Constellation />
       <View style={styles.content}>
         <PageHeader title='Personagens' />
         <ScrollView>
-          {characters.map(({ name }) => (
+          {characters.map(({ name, height, mass, gender, homeworld }) => (
             <SingleItemCard key={name}>
               <Column>
                 <Text style={styles.title}>{name}</Text>
-                {/* <View style={styles.line}>
-                  <Text style={styles.item}>Período de Rotação:</Text>
-                  <Text style={styles.description}>{rotation_period}</Text>
+                <View style={styles.line}>
+                  <Text style={styles.item}>Terra Natal:</Text>
+                  <Text style={styles.description}>{homeworld}</Text>
                 </View>
                 <View style={styles.line}>
-                  <Text style={styles.item}>Diâmetro:</Text>
-                  <Text style={styles.description}>{diameter}</Text>
+                  <Text style={styles.item}>Sexo:</Text>
+                  <Text style={styles.description}>{gender}</Text>
                 </View>
                 <View style={styles.line}>
-                  <Text style={styles.item}>Clima:</Text>
-                  <Text style={styles.description}>{climate}</Text>
+                  <Text style={styles.item}>Altura:</Text>
+                  <Text style={styles.description}>{height}</Text>
                 </View>
                 <View style={styles.line}>
-                  <Text style={styles.item}>Terreno:</Text>
-                  <Text style={styles.description}>{terrain}</Text>
-                </View> */}
+                  <Text style={styles.item}>Peso:</Text>
+                  <Text style={styles.description}>{mass}</Text>
+                </View>
               </Column>
             </SingleItemCard>
           ))}

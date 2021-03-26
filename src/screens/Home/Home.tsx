@@ -22,7 +22,7 @@ const Home: React.FC = () => {
       <Constellation />
       <View style={styles.content}>
         <View style={styles.head}>
-          <Text style={styles.username}>Olá, Glauber</Text>
+          <Text style={styles.username}>Olá!</Text>
         </View>
 
         <Text style={styles.subText}>O que você deseja explorar?</Text>

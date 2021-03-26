@@ -1,15 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, Dispatch } from 'react';
 import { StyleSheet, SafeAreaView, View, Text, ScrollView } from 'react-native';
-
-import { Column, Constellation, PageHeader, SingleItemCard } from '~/components';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { Column, Constellation, PageHeader, SingleItemCard, Loader } from '~/components';
+import { planetsActions } from '~/redux/actions/planetsActions';
 import { AppState } from '~/redux/reducers/rootReducer';
-
-import planets from '~/constants/planets-mock';
-
 import { theme } from '~/theme';
+import axios from 'axios';
 
 const Planets: React.FC = () => {
+  const { planets } = useSelector((state: AppState) => state.planets);
+  const planetsDispatch = useDispatch<Dispatch<planetsActions>>();
+
+  const [loading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadResources = async () => {
+      try {
+        const response = await axios.get('https://swapi.dev/api/planets/');
+        planetsDispatch({ type: 'FETCH_PLANETS', payload: response.data.results });
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('PLANETS LOAD ERROR: ', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadResources();
+  }, [planetsDispatch]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <Constellation />
@@ -17,7 +41,7 @@ const Planets: React.FC = () => {
         <PageHeader title='Planetas' />
         <ScrollView>
           {planets.map(({ name, rotation_period, diameter, climate, terrain }) => (
-            <SingleItemCard>
+            <SingleItemCard key={name}>
               <Column>
                 <Text style={styles.title}>{name}</Text>
                 <View style={styles.line}>
