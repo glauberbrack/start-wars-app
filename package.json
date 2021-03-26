@@ -8,7 +8,6 @@
     "start": "react-native start",
     "lint": "eslint .",
     "eslint": "eslint --ignore-path .gitignore .",
-    "pretest": "yarn eslint",
     "test": "jest",
     "prettier": "prettier --write '**/*.{js,ts,tsx}' --ignore-path .gitignore",
     "pod:install": "cd ios && pod install && cd .."

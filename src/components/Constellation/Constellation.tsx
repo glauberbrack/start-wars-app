@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import BGConstellation from '~/assets/backgrounds/background-constellation.svg';
 
-const Constellation = () => {
+const Constellation: React.FC = () => {
   return <BGConstellation style={styles.image} />;
 };
 
