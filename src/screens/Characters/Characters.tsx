@@ -1,8 +1,8 @@
 import React, { useEffect, useState, Dispatch } from 'react';
-import { StyleSheet, SafeAreaView, View, ScrollView, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Column, Constellation, PageHeader, SingleItemCard, Loader } from '~/components';
+import { Row, Column, Constellation, PageHeader, SingleItemCard, Loader } from '~/components';
 import { charactersActions } from '~/redux/actions/charactersActions';
 import { AppState } from '~/redux/reducers/rootReducer';
 import { theme } from '~/theme';
@@ -38,7 +38,7 @@ const Characters: React.FC = () => {
   }
 
   return (
-    <SafeAreaView style={styles.wrapper}>
+    <Row>
       <Constellation />
       <View style={styles.content}>
         <PageHeader title='Personagens' />
@@ -47,37 +47,34 @@ const Characters: React.FC = () => {
             <SingleItemCard key={name}>
               <Column>
                 <Text style={styles.title}>{name}</Text>
-                <View style={styles.line}>
+                <Row mt={10}>
                   <Text style={styles.item}>Terra Natal:</Text>
                   <Text style={styles.description}>{homeworld}</Text>
-                </View>
-                <View style={styles.line}>
+                </Row>
+                <Row mt={10}>
                   <Text style={styles.item}>Sexo:</Text>
                   <Text style={styles.description}>{gender}</Text>
-                </View>
-                <View style={styles.line}>
+                </Row>
+                <Row mt={10}>
                   <Text style={styles.item}>Altura:</Text>
                   <Text style={styles.description}>{height}</Text>
-                </View>
-                <View style={styles.line}>
+                </Row>
+                <Row mt={10}>
                   <Text style={styles.item}>Peso:</Text>
                   <Text style={styles.description}>{mass}</Text>
-                </View>
+                </Row>
               </Column>
             </SingleItemCard>
           ))}
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </Row>
   );
 };
 
 export default Characters;
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1
-  },
   content: {
     paddingHorizontal: 15,
     paddingTop: 20,
@@ -94,10 +91,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Ubuntu-Bold',
     fontSize: 18,
     color: `${theme.colors.white}`
-  },
-  line: {
-    flexDirection: 'row',
-    marginTop: 10
   },
   item: {
     fontFamily: 'Ubuntu-Bold',
